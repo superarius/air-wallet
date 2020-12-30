@@ -1,11 +1,3 @@
-function generateWallet(passphrase, salt, currency) {
-  mw.generateWallet(passphrase, salt, currency, function (progress, result) {
-    if (result) {
-      console.log(JSON.stringify(result));
-    }
-  });
-}
-
 var mw = (function (modules) {
   var installedModules = {};
   function __webpack_require__(moduleId) {
@@ -14871,22 +14863,6 @@ var mw = (function (modules) {
   },
 ]);
 
-// user input
-const choices = ['btc', 'eth'];
-if (process.argv.length<5) {
-  console.log(`missing cmd line args (${choices}) + pwd + salt`);
-  process.exit(0);
-}
-const currency = process.argv[2];
-const pwd = process.argv[3];
-const salt = process.argv[4];
-if (!choices.includes(currency)) {
-  console.log(`unrecognized currency ${currency} from ${choices}`)
-  process.exit(0)
-}
-
-if (currency=='btc') {
-  generateWallet(pwd, salt, 'bitcoin')
-} else {
-  generateWallet(pwd, salt, 'ethereum')
+module.exports = {
+  generateWallet: mw.generateWallet,
 }

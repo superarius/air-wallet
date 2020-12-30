@@ -75,5 +75,5 @@ if __name__ == '__main__':
             msg = password_decrypt(encrypted, pw).decode()
         print(msg)
     else:
-        ValueError(f'unrecognized command line argument: {command} for [ encrypt , decrypt ]')
+        raise ValueError(f'unrecognized command line argument: {command} for [ encrypt , decrypt ]')
             
