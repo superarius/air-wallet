@@ -5,17 +5,17 @@ an extremely simple bitcoin wallet for self-custody.
 the emphasis is on ease of recovery so you can set and forget your bitcoin in cold storage and feel confident that the private keys are both secure (no one can steal them) and safe (the rightful owner can reconstruct them)
 
 # setup
-Air wallet uses the warpwallet algorithm under the hood to generate keypairs. WEAK PASSPHRASE WARPWALLETS ARE INSECURE. The passphrase passed to the warpwallet generation algorithm must be strong with good entropy, a 12 or 24 word mnemonic passphrase is suggested. Air wallet uses a simple salting scheme to generate 100 keypairs from one base mnemonic. Instead of manually inserting the long and sensitive mnemonic everytime you want to use the warpwallet, we store a copy of the mnemonic in an encrypted file. Long story short, to set up your wallet you need to chose a long mnemonic phrase and create an encrypted keyfile like so:
+To set up your wallet you need to chose a strong, long mnemonic passphrase and then encrypt this menmonic to create the airwallet key file.
 
-`python3 scripts/fernetAES.py encrypt path/to/output/file`
+`python3 scripts/fernetAES.py encrypt path/to/output/keyfile`
 
-First enter a long mnemonic seed phrase with good entropy, preferrably one that you also memorize. Then enter a password that will decrypt the file containing the mnemonic. the process will store a keyfile at the specified path
+First enter a long mnemonic seed phrase with good entropy, preferrably one that you also memorize. Then enter a password that will decrypt this file containing the mnemonic. The process will store a keyfile at the specified path.
 
 After creation try:
 
 `python3 scripts/fernetAES.py decrypt path/to/encrypted/keyfile`
 
-to make sure you can decrypt the keyfile with the password.
+Make absolutely certain you can decrypt the keyfile with the password. Do this in a trusted offline environment wherever possible. Be certain you know your password and you have the keyfile backed up. Memorize your mnemonic as well  if you want to be fully certain you can reconstruct your keys even in a worst case scenario (lost the keyfile)
 
 # use
 To interact with a single keypair in the wallet run e.g.
