@@ -44,6 +44,8 @@ def simple_send_all(sender_priv, receiver_address, testnet=False, fee_type='stan
 	secret = CBitcoinSecret(sender_priv)
 	sender = f"{P2PKHBitcoinAddress.from_pubkey(secret.pub)}"
 	utxos = get_unspent(sender, testnet=testnet)
+	if (len(utxos)==0):
+		raise ValueError('nothing to send')
 	inputs = []
 	total = 0
 	for utxo in utxos:
