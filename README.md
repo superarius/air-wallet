@@ -15,7 +15,7 @@ After creation try:
 
 `python3 scripts/fernetAES.py decrypt path/to/encrypted/keyfile`
 
-Make absolutely certain you can decrypt the keyfile with the password. Do this in a trusted offline environment wherever possible. Be certain you know your password and you have the keyfile backed up. Memorize your mnemonic as well  if you want to be fully certain you can reconstruct your keys even in a worst case scenario (lost the keyfile)
+Make absolutely certain you can decrypt the keyfile with the password. Do this in a trusted offline environment wherever possible. Be certain you know your password and you have the keyfile backed up. Memorize your mnemonic as well  if you want to be fully certain you can reconstruct your keys even in a worst case scenario (lost the keyfile, forgot the password)
 
 # use
 To interact with a single keypair in the wallet run e.g.
