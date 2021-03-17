@@ -93,14 +93,14 @@ def handleBasicCommand(filepath, base_salt, idx1, idx2, command):
             script_path = 'scripts/btcbalance.py'
             script_output = check_output([sys.executable, script_path, wallet["public"]])
             result = json.loads(script_output.decode().rstrip())
-            USDbtc = cryptocompare.get_price('BTC', curr='USD')['BTC']['USD']
+            USDbtc = cryptocompare.get_price('BTC', currency='USD')['BTC']['USD']
             for k, v in result.items():
                 print(f'{k}: {v} BTC ($ {round(v*USDbtc, 2)})')
         elif currency == 'ethereum':
             script_path = 'scripts/ethbalance.js'
             script_output = check_output(['node', script_path, wallet["public"]])
             result = json.loads(script_output.decode().rstrip())
-            USDeth = cryptocompare.get_price('ETH', curr='USD')['ETH']['USD']
+            USDeth = cryptocompare.get_price('ETH', currency='USD')['ETH']['USD']
             for k, v in result.items():
                 print(f'{k}: {v} ETH ($ {round(v*USDeth, 2)})')
     elif command == 'send':
@@ -134,7 +134,7 @@ def handleBatchCommand(filepath, base_salt, command):
         if currency == 'bitcoin':
             totalBTC = 0
             totalUSD = 0
-            USDbtc = cryptocompare.get_price('BTC', curr='USD')['BTC']['USD']
+            USDbtc = cryptocompare.get_price('BTC', currency='USD')['BTC']['USD']
             for i in range(WALLET_SIZE):
                 pwds = [(base_mnemonic+base_salt+str(i), base_salt+str(j)) for j in range(WALLET_SIZE)]
                 script_path = 'scripts/getAddresses.js'
@@ -153,7 +153,7 @@ def handleBatchCommand(filepath, base_salt, command):
         if currency == 'ethereum':
             totalETH = 0
             totalUSD = 0
-            USDeth = cryptocompare.get_price('ETH', curr='USD')['ETH']['USD']
+            USDeth = cryptocompare.get_price('ETH', currency='USD')['ETH']['USD']
             for i in range(WALLET_SIZE):
                 pwds = [(base_mnemonic+base_salt+str(i), base_salt+str(j)) for j in range(WALLET_SIZE)]
                 script_path = 'scripts/getAddresses.js'
@@ -181,6 +181,6 @@ if __name__ == '__main__':
         else:
             filepath, base_salt, idx1, idx2, command = sys.argv[1:]
             handleBasicCommand(filepath, base_salt, idx1, idx2, command)
-    except:
+    except Exception as e:
         print('An unexpected error occured. Witholding error logging for security.')
     sys.exit(0)
