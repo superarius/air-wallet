@@ -3,8 +3,8 @@ import os, sys, json
 from getpass import getpass
 import cryptocompare
 
-BTC_SALT = 'btc'
-ETH_SALT = 'eth'
+BTC_SALT = 'btcfddsdfsdfsd'
+ETH_SALT = 'dfdsfdsf'
 WALLET_SIZE = 10
 # operations on a single keypair inside wallet
 BASIC_COMMANDS = ['address', 'sweep', 'send', 'export', 'balance']
